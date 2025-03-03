@@ -12,7 +12,8 @@ let dependencies: [Package.Dependency] = [
     .package(url: "https://github.com/awslabs/aws-sdk-swift", exact: "1.0.69"),
     .package(url: "https://github.com/stephencelis/SQLite.swift.git", exact: "0.15.3"),
     .package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", from: "2.1.0"),
-    .package(url: "https://github.com/aws-amplify/amplify-swift-utils-notifications.git", from: "1.1.0")
+    .package(url: "https://github.com/aws-amplify/amplify-swift-utils-notifications.git", from: "1.1.0"),
+    .package(url: "https://github.com/indrapt/aws-mobile-appsync-sdk-ios", from: "3.1.2")
 ]
 
 let amplifyTargets: [Target] = [
@@ -89,6 +90,12 @@ let amplifyTargets: [Target] = [
         dependencies: [],
         path: "AmplifyAsyncTesting/Sources/AsyncTesting",
         linkerSettings: [.linkedFramework("XCTest")]
+    ),
+    .target(
+        name: "AWSAppSync",
+        dependencies: [
+            .product(name: "AWSAppSync", package: "aws-mobile-appsync-sdk-ios")
+        ]
     ),
     .testTarget(
         name: "AmplifyAsyncTestingTests",
